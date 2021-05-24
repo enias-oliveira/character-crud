@@ -37,6 +37,29 @@ app.get('/characters/:id', async (request, response) => {
   response.send(character)
 })
 
+app.patch('/characters/:id', async (request, response) => {
+  const filter = { id: parseInt(request.params.id) }
+  const options = { upsert: false }
+  const updateDoc = {
+    $set: { ...request.body },
+  }
+
+  const mongoResponse = await app.db.collection('personagens').updateOne(filter, updateDoc, options)
+
+  const updatedCharacter = await app.db.collection('personagens').findOne(filter)
+
+  delete updatedCharacter._id
+
+  response.send(updatedCharacter)
+})
+
+app.delete('/characters/:id', async (request, response) => {
+  const filter = { id: parseInt(request.params.id) }
+  await app.db.collection('personagens').deleteOne(filter)
+
+  response.status(204).send()
+})
+
 app.listen(3000, () => {
   console.log('Express app listening at http://localhost:3000/')
 })
