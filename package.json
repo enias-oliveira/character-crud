@@ -1,11 +1,10 @@
 {
-  "name": "anime-crud",
+  "name": "character-crud",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.19.0",
-    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mongodb": "^3.6.8",
     "nodemon": "^2.0.7"

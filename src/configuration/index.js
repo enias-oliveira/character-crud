@@ -6,7 +6,7 @@ const configApp = async (app) => {
   app.use(bodyParser.urlencoded({ extended: false }))
   app.use(bodyParser.json())
 
-  app.db = await configDatabase('anime-crud')
+  app.db = await configDatabase(process.env.DB_NAME)
 
   registerRoutes(app)
 }
